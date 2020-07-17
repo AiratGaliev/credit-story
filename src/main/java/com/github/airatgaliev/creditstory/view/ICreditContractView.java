@@ -14,4 +14,6 @@ public interface ICreditContractView {
   void printAllCreditContracts(List<CreditContract> contractList);
 
   boolean getRestartOrQuitProgram();
+
+  void printExceptionResponse(Exception e);
 }
