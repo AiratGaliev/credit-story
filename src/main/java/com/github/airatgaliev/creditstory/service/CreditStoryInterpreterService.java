@@ -5,34 +5,31 @@ import java.util.List;
 
 public class CreditStoryInterpreterService {
 
-  private final char DELAY_FROM_1_TO_30_DAYS = '1';
-  private final char DELAY_FROM_30_TO_50_DAYS = '2';
-  private final char DELAY_FROM_50_AND_MORE_DAYS = '3';
+  private static final char DELAY_FROM_ONE_TO_THIRTY_DAYS = '1';
+  private static final char DELAY_FROM_THIRTY_TO_FIFTY_DAYS = '2';
+  private static final char DELAY_FROM_FIFTY_AND_MORE_DAYS = '3';
 
   public CreditStory getCreditStoryFromPaymentDiscipline(List<Character> paymentDiscipline) {
-    int countDelaysFrom1To30Days = 0;
-    int countDelaysFrom30To50Days = 0;
-    int countDelaysFrom50AndMoreDays = 0;
+    int countDelaysFromOneToThirtyDays = 0;
+    int countDelaysFromThirtyToFiftyDays = 0;
+    int countDelaysFromFiftyAndMoreDays = 0;
     for (Character paymentChar : paymentDiscipline) {
-      if (paymentChar.equals(DELAY_FROM_1_TO_30_DAYS)) {
-        countDelaysFrom1To30Days++;
+      if (paymentChar.equals(DELAY_FROM_ONE_TO_THIRTY_DAYS)) {
+        countDelaysFromOneToThirtyDays++;
       }
-      if (paymentChar.equals(DELAY_FROM_30_TO_50_DAYS)) {
-        countDelaysFrom30To50Days++;
+      if (paymentChar.equals(DELAY_FROM_THIRTY_TO_FIFTY_DAYS)) {
+        countDelaysFromThirtyToFiftyDays++;
       }
-      if (paymentChar.equals(DELAY_FROM_50_AND_MORE_DAYS)) {
-        countDelaysFrom50AndMoreDays++;
+      if (paymentChar.equals(DELAY_FROM_FIFTY_AND_MORE_DAYS)) {
+        countDelaysFromFiftyAndMoreDays++;
       }
     }
-    if (countDelaysFrom30To50Days > 3 || countDelaysFrom50AndMoreDays > 0) {
+    if (countDelaysFromThirtyToFiftyDays > 3 || countDelaysFromFiftyAndMoreDays > 0) {
       return CreditStory.NEGATIVE;
     }
-    if (countDelaysFrom30To50Days > 1 || countDelaysFrom1To30Days > 3) {
+    if (countDelaysFromThirtyToFiftyDays > 1 || countDelaysFromOneToThirtyDays > 3) {
       return CreditStory.DOUBTFUL;
     }
-    if (countDelaysFrom1To30Days < 3) {
-      return CreditStory.POSITIVE;
-    }
-    return null;
+    return CreditStory.POSITIVE;
   }
 }
