@@ -32,9 +32,9 @@ public class CreditContract {
 
   @Override
   public String toString() {
-    return "Кредитный контракт" +
-        " с платежной дисциплиной клиента " + paymentDiscipline.stream().map(String::valueOf)
+    return "Кредитный контракт с платежной дисциплиной клиента " + paymentDiscipline.stream()
+        .map(String::valueOf)
         .collect(Collectors.joining()) +
-        ", кредитная история - " + creditStory.getValue();
+        ", у которого кредитная история - " + creditStory.getValue();
   }
 }

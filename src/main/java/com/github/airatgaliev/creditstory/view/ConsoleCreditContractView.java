@@ -6,10 +6,12 @@ import java.util.Scanner;
 
 public class ConsoleCreditContractView implements ICreditContractView {
 
+  public final String EXCEPTION_TEXT = "Извините, Вы ввели неверные данные: ";
+
   @Override
   public void printCreditContractInfoResponse(CreditContract creditContract) {
     System.out.println(
-        "Добавлена следующая информация по кредитному договору: " + creditContract.toString());
+        "Добавлена следующая информация: " + creditContract.toString());
   }
 
   @Override
@@ -26,7 +28,7 @@ public class ConsoleCreditContractView implements ICreditContractView {
 
   @Override
   public void printAllCreditContracts(List<CreditContract> creditContracts) {
-    System.out.println("Список всех кредитных сонтрактов: ");
+    System.out.println("Список всех кредитных договоров: ");
     for (CreditContract creditContract : creditContracts) {
       System.out.println(creditContract.toString());
     }
@@ -48,5 +50,10 @@ public class ConsoleCreditContractView implements ICreditContractView {
         System.out.println("Извините, вы ввели неверные данные, повторите попытку");
       }
     }
+  }
+
+  @Override
+  public void printExceptionResponse(Exception e) {
+    System.out.println(EXCEPTION_TEXT + e.getMessage());
   }
 }
