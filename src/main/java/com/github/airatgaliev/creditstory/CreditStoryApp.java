@@ -9,12 +9,12 @@ import com.github.airatgaliev.creditstory.view.ICreditContractView;
 public class CreditStoryApp {
 
   public static void main(String[] args) {
+    ICreditContractRepository creditContractRepository = new InMemoryCreditContractRepositoryImpl();
+    ICreditContractView creditContractView = new ConsoleCreditContractView();
+    CreditContractController creditContractController = new CreditContractController(
+        creditContractRepository, creditContractView);
     boolean isRestarted = true;
     while (isRestarted) {
-      ICreditContractRepository creditContractRepository = new InMemoryCreditContractRepositoryImpl();
-      ICreditContractView creditContractView = new ConsoleCreditContractView();
-      CreditContractController creditContractController = new CreditContractController(
-          creditContractRepository, creditContractView);
       creditContractController.getAllCreditContracts();
       creditContractController.createCreditContract();
       isRestarted = creditContractController.isRestartedInterpreter();

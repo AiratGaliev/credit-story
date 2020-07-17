@@ -1,6 +1,7 @@
 package com.github.airatgaliev.creditstory.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CreditContract {
 
@@ -31,9 +32,9 @@ public class CreditContract {
 
   @Override
   public String toString() {
-    return "CreditContract{" +
-        "paymentDiscipline=" + paymentDiscipline +
-        ", creditStory=" + creditStory.getValue() +
-        '}';
+    return "Кредитный контракт" +
+        " с платежной дисциплиной клиента " + paymentDiscipline.stream().map(String::valueOf)
+        .collect(Collectors.joining()) +
+        ", кредитная история - " + creditStory.getValue();
   }
 }
